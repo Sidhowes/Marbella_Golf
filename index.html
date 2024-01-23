@@ -44,7 +44,7 @@
         }
 
         img {
-            width: 113%;
+            width: 110%;
             height: 9em;
             margin-bottom: 10px;
             cursor: pointer;
@@ -130,6 +130,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Date</th>
                         <th>Golf Course</th>
                         <th>Pick Up from Hotel</th>
                         <th>Pick Up from Golf Course</th>
@@ -139,11 +140,28 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Main Course</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>30 minutes</td>
-                        <td>09:00 AM</td>
+                        <td>2024-04-24</td>
+                        <td>Atalaya Golf</td>
+                        <td>08:00 AM</td>
+                        <td>14:30 PM</td>
+                        <td>6 minutes</td>
+                        <td>09:12 AM</td>
+                    </tr>
+                    <tr>
+                        <td>2024-04-25</td>
+                        <td>Los Arqueros</td>
+                        <td>08:35 AM</td>
+                        <td>15:10 PM</td>
+                        <td>14 minutes</td>
+                        <td>09:50 AM</td>
+                    </tr>
+                    <tr>
+                        <td>2024-04-27</td>
+                        <td>Valle Romano</td>
+                        <td>09:15 AM</td>
+                        <td>15:50 PM</td>
+                        <td>25 minutes</td>
+                        <td>10:30 AM</td>
                     </tr>
                     <!-- Add more rows as needed -->
                 </tbody>
@@ -157,7 +175,56 @@
                 <img src="images/hotel.jpeg" alt="Hotels Image">
             </a>
         </h2>
-    </section>    
+    </section>
+    
+    <section id="rooms">
+        <h2 onclick="toggleTabContent('rooms')"><img src="images/rooms.jpeg" alt="Rooms"></h2>
+        <div id="roomsTab" class="sub-tab-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Players</th>
+                        <th>Rooms</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Michael Williams - Jack Meredith</td>
+                        <td>Room 1</td>
+                    </tr>
+                    <tr>
+                        <td>Sid Howes - Jordan Meredith</td>
+                        <td>Room 2</td>
+                    </tr>
+                    <tr>
+                        <td>Adam Kheen - Jake Wilgoss</td>
+                        <td>Room 3</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Gough - Tom Dunford</td>
+                        <td>Room 4</td>
+                    </tr>
+                    <tr>
+                        <td>Sam Gibson - Jonny Cowlard</td>
+                        <td>Room 5</td>
+                    </tr>
+                    <tr>
+                        <td>Harry Cleanthi - Jamie Taylor</td>
+                        <td>Room 6</td>
+                    </tr>
+                    <tr>
+                        <td>Keith Howes - Steve Collins</td>
+                        <td>Room 7</td>
+                    </tr>
+                    <tr>
+                        <td>Terry Gale - Anthony Buck</td>
+                        <td>Room 8</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </section>
 
     <section id="players">
         <h2 onclick="toggleTabContent('players')"><img src="images/players.jpeg" alt="Players"></h2>
@@ -171,12 +238,68 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>John Doe</td>
+                        <td>Jack Meredith</td>
                         <td>5</td>
                     </tr>
                     <tr>
-                        <td>Jane Smith</td>
-                        <td>8</td>
+                        <td>Jake Wilgoss</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Sid Howes(Current Champ -2 Shots)</td>
+                        <td>15 (13)</td>
+                    </tr>
+                    <tr>
+                        <td>Jordan Meredith</td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td>Adam Kheen</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>Jonny Cowlard</td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td>Steve Collins</td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td>Keith Howes</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>Anthony Buck</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Gough</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>Terry Gale</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>Harry Cleanthi</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Williams</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>Jamie Taylor</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td>Sam Gibson</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td>Tom Dunford</td>
+                        <td>26</td>
                     </tr>
                     <!-- Add more rows as needed -->
                 </tbody>
@@ -191,25 +314,25 @@
                 <thead>
                     <tr>
                         <th>Player</th>
-                        <th>Team</th>
+                        <th>Group</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Player 1</td>
-                        <td>Team A</td>
+                        <td>Keith Howes - Steve Collins,<br>Terry Gale - Anthony Buck</td>
+                        <td>Group 1</td>
                     </tr>
                     <tr>
-                        <td>Player 2</td>
-                        <td>Team A</td>
+                        <td>Michael Gough - Jonny Cowlard,<br>Sid Howes - Jamie Taylor</td>
+                        <td>Group 2</td>
                     </tr>
                     <tr>
-                        <td>Player 3</td>
-                        <td>Team B</td>
+                        <td>Jordan Meredith - Michael Williams,<br>Jake Wilgoss - Sam Gibson</td>
+                        <td>Group 3</td>
                     </tr>
                     <tr>
-                        <td>Player 4</td>
-                        <td>Team B</td>
+                        <td>Adam Kheen - Harry Cleanthi,<br>Jack Meredith - Tom Dunford</td>
+                        <td>Group 4</td>
                     </tr>
                     <!-- Add more rows as needed -->
                 </tbody>
@@ -225,17 +348,41 @@
                     <thead>
                         <tr>
                             <th>Player</th>
-                            <th>Team Europe</th>
+                            <th>Team USA</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Player Alpha</td>
-                            <td>Europe</td>
+                            <td>Steve Collins (C)</td>
+                            <td>USA 1</td>
                         </tr>
                         <tr>
-                            <td>Player Beta</td>
-                            <td>Europe</td>
+                            <td>Terry Gale</td>
+                            <td>USA 1</td>
+                        </tr>
+                        <tr>
+                            <td>Jack Meredith</td>
+                            <td>USA 2</td>
+                        </tr>
+                        <tr>
+                            <td>Jamie Taylor</td>
+                            <td>USA 2</td>
+                        </tr>
+                        <tr>
+                            <td>Sid Howes</td>
+                            <td>USA 3</td>
+                        </tr>
+                        <tr>
+                            <td>Tom Dunford</td>
+                            <td>USA 3</td>
+                        </tr>
+                        <tr>
+                            <td>Adam Kheen</td>
+                            <td>USA 4</td>
+                        </tr>
+                        <tr>
+                            <td>Harry Cleanthi</td>
+                            <td>USA 4</td>
                         </tr>
                         <!-- Add more rows as needed -->
                     </tbody>
@@ -245,22 +392,79 @@
                     <thead>
                         <tr>
                             <th>Player</th>
-                            <th>Team USA</th>
+                            <th>Team Europe</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Player Delta</td>
-                            <td>USA</td>
+                            <td>Keith Howes (C)</td>
+                            <td>Europe 1</td>
                         </tr>
                         <tr>
-                            <td>Player Echo</td>
-                            <td>USA</td>
+                            <td>Anthony Buck</td>
+                            <td>Europe 1</td>
+                        </tr>
+                        <tr>
+                            <td>Jake Wilgoss</td>
+                            <td>Europe 2</td>
+                        </tr>
+                        <tr>
+                            <td>Michael Williams</td>
+                            <td>Europe 2</td>
+                        </tr>
+                        <tr>
+                            <td>Jordan Meredith</td>
+                            <td>Europe 3</td>
+                        </tr>
+                        <tr>
+                            <td>Sam Gibson</td>
+                            <td>Europe 3</td>
+                        </tr>
+                        <tr>
+                            <td>Jonny Cowlard</td>
+                            <td>Europe 4</td>
+                        </tr>
+                        <tr>
+                            <td>Michael Gough</td>
+                            <td>Europe 4</td>
                         </tr>
                         <!-- Add more rows as needed -->
                     </tbody>
                 </table>
             </div>
+        </div>
+    </section>
+
+    <section id="singles">
+        <h2 onclick="toggleTabContent('single')"><img src="images/trophy.jpeg" alt="Singles"></h2>
+        <div id="singleTab" class="sub-tab-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Group</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Keith Howes,<br>Steve Collins,<br>Terry Gale,<br>Anthony Buck</td>
+                        <td>Group 1</td>
+                    </tr>
+                    <tr>
+                        <td>Jack Meredith,<br>Michael Williams,<br>Jordan Meredith,<br>Michael Gough</td>
+                        <td>Group 2</td>
+                    </tr>
+                    <tr>
+                        <td>Sid Howes,<br>Jonny Cowlard,<br>Harry Cleanthi,<br>Tom Dunford</td>
+                        <td>Group 3</td>
+                    </tr>
+                    <tr>
+                        <td>Jake Wilgoss,<br>Adam Kheen,<br>Sam Gibson,<br>Jamie Taylor</td>
+                        <td>Group 4</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
         </div>
     </section>
 
