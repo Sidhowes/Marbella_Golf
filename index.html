@@ -141,7 +141,7 @@
         .overlay-text.visible {
             display: flex;
             flex-direction: column;
-            animation: overlay-large 800ms forwards;
+            animation: overlay-large 6000ms forwards;
         }
 
         @keyframes overlay-large {
@@ -554,7 +554,7 @@
                     clearInterval(timerInterval);
                     document.getElementById('countdown').innerHTML = 'Event started!';
                 }
-            }, 200);
+            }, 500);
         }
 
          // Show the overlay and start the countdown when the page is loaded
