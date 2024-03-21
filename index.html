@@ -71,8 +71,8 @@
         }
 
         a {
-            color: #ffffff; /* Change the color code to your desired color */
-            text-decoration: none; /* Optional: Remove underline */
+            color: #ffffff;
+            text-decoration: none; 
         }
 
         .sub-tabs {
@@ -121,51 +121,58 @@
         }
 
         .ryder-cup-table {
-            width: 48%; /* Adjust as needed */
+            width: 48%; 
         }
 
-        /* Modal styles */
-        .modal {
+        .overlay-text {
             display: none;
             position: fixed;
-            z-index: 1;
-            left: 0;
             top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            color: #11e422;
+            font-family: Sriracha, sans-serif;
         }
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-            text-align: center;
-            position: relative;
+        .overlay-text.visible {
+            display: flex;
+            flex-direction: column;
+            animation: overlay-large 800ms forwards;
+        }
+
+        @keyframes overlay-large {
+            from {
+                background-color: rgba(0, 0, 0);
+                font-size: 0;
+            }
+            to {
+                background-color: rgba(0, 0, 0.5);
+                font-size: 3rem;
+            }
+        }
+
+        #start-game-video {
+            max-width: 100%;
+            max-height: 60vh;
         }
     </style>
 </head>
 <body>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span onclick="closeModal()" style="position: absolute; top: 0; right: 0; cursor: pointer;">&times;</span>
-            <h2>Welcome to Our Site</h2>
-            <video width="100%" controls autoplay loop>
-                <source src="your-video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div id="countdown">Countdown: <span id="timer"></span></div>
-        </div>
-    </div>
-
     <header>
         <h1>Marbella Golf Holiday<br>23rd-28th April 2024</h1>
     </header>
+
+    <div id="start-game" class="overlay-text visible">
+        <div class="overlay-content">
+            <iframe id="start-game-video" src="https://www.youtube.com/embed/g6Pm-5A7C5k?autoplay=1" frameborder="0" allowfullscreen></iframe>
+            <div id="countdown"></div>
+        </div>
+    </div>
 
 
     <section id="teeTimes">
@@ -207,7 +214,7 @@
                         <td>25 minutes</td>
                         <td>10:30 AM</td>
                     </tr>
-                    <!-- Add more rows as needed -->
+
                 </tbody>
             </table>
         </div>
@@ -264,7 +271,7 @@
                         <td>Terry Gale - Anthony Buck</td>
                         <td>Room 8</td>
                     </tr>
-                    <!-- Add more rows as needed -->
+
                 </tbody>
             </table>
         </div>
@@ -345,7 +352,7 @@
                         <td>Tom Dunford</td>
                         <td>27</td>
                     </tr>
-                    <!-- Add more rows as needed -->
+
                 </tbody>
             </table>
         </div>
@@ -378,7 +385,7 @@
                         <td>Adam Kheen - Harry Cleanthi,<br>Jack Meredith - Tom Dunford</td>
                         <td>Group 4</td>
                     </tr>
-                    <!-- Add more rows as needed -->
+
                 </tbody>
             </table>
         </div>
@@ -428,7 +435,7 @@
                             <td>Harry Cleanthi</td>
                             <td>USA 4</td>
                         </tr>
-                        <!-- Add more rows as needed -->
+
                     </tbody>
                 </table>
 
@@ -472,7 +479,7 @@
                             <td>Michael Gough</td>
                             <td>Europe 4</td>
                         </tr>
-                        <!-- Add more rows as needed -->
+
                     </tbody>
                 </table>
             </div>
@@ -506,74 +513,62 @@
                         <td>Michael Gough,<br>Tom Dunford,<br>Sam Gibson,<br>Jamie Taylor</td>
                         <td>Group 4</td>
                     </tr>
-                    <!-- Add more rows as needed -->
+
                 </tbody>
             </table>
         </div>
     </section>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <iframe width="100%" height="315" src="https://www.youtube.com/watch?v=g6Pm-5A7C5k" frameborder="0" allowfullscreen></iframe>
-            <p>This is a quick video introduction to our golf holiday. Enjoy!</p>
-            <p>Countdown timer to 23rd April 2024:</p>
-            <div id="countdown"></div>
-        </div>
-    </div>
-
-
     <script>
-        // Function to toggle tab content visibility
-        function toggleTab(tabName) {
-            var tabContent = document.getElementsByClassName("sub-tab-content");
-            for (var i = 0; i < tabContent.length; i++) {
-                tabContent[i].style.display = "none";
-            }
-            document.getElementById(tabName + "Tab").style.display = "block";
+        // Function to toggle tab content
+        function toggleTabContent(tabId) {
+            const tabContent = document.getElementById(tabId + 'Tab');
+            tabContent.classList.toggle('active');
         }
 
-        // Function to toggle sub-tab content visibility
-        function toggleTabContent(tabName) {
-            var subTabs = document.getElementsByClassName("sub-tab-content");
-            for (var i = 0; i < subTabs.length; i++) {
-                subTabs[i].style.display = "none";
-            }
-            document.getElementById(tabName + "Tab").style.display = "block";
+        // Function to initialize the countdown timer
+        function initCountdown() {
+            // Target date: 23rd April 2023
+            const targetDate = new Date('2024-04-23T00:00:00').getTime();
+
+            // Update the countdown every second
+            const timerInterval = setInterval(function () {
+                // Current date and time
+                const now = new Date().getTime();
+
+                // Time remaining until target date
+                const timeRemaining = targetDate - now;
+
+                // Calculate days, hours, minutes, and seconds
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                // Display the countdown
+                document.getElementById('countdown').innerHTML = `${days}d:${hours}h:${minutes}m:${seconds}s`;
+
+                // If the countdown is over, clear the interval
+                if (timeRemaining < 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('countdown').innerHTML = 'Event started!';
+                }
+            }, 200);
         }
 
-        // Function to open the modal
-        function openModal() {
-            document.getElementById('myModal').style.display = 'block';
-        }
+         // Show the overlay and start the countdown when the page is loaded
+         window.onload = function () {
+            // Show the overlay
+            document.getElementById('start-game').classList.add('visible');
+            
+            // Initialize the countdown
+            initCountdown();
 
-        // Function to close the modal
-        function closeModal() {
-            document.getElementById('myModal').style.display = 'none';
-        }
-
-        // Countdown timer to 23rd April 2024
-        var countDownDate = new Date("April 23, 2024 00:00:00").getTime();
-
-        var x = setInterval(function() {
-
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
-
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
-
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "EXPIRED";
-            }
-        }, 1000);
+            // Add event listener to the overlay to remove the visible class on click
+            document.getElementById('start-game').addEventListener('click', function() {
+                document.getElementById('start-game').classList.remove('visible');
+            });
+        };
     </script>
 
 </body>
