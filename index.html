@@ -123,9 +123,45 @@
         .ryder-cup-table {
             width: 48%; /* Adjust as needed */
         }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeModal()" style="position: absolute; top: 0; right: 0; cursor: pointer;">&times;</span>
+            <h2>Welcome to Our Site</h2>
+            <video width="100%" controls autoplay loop>
+                <source src="your-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div id="countdown">Countdown: <span id="timer"></span></div>
+        </div>
+    </div>
 
     <header>
         <h1>Marbella Golf Holiday<br>23rd-28th April 2024</h1>
@@ -476,19 +512,65 @@
         </div>
     </section>
 
-    <script>
-        function showSubTab(tabName) {
-            // Hide all sub-tabs
-            const subTabs = document.querySelectorAll('.sub-tab-content');
-            subTabs.forEach(tab => tab.classList.remove('active'));
+    <nav>
+        <a href="#teeTimes" onclick="toggleTab('teeTimes')">Tee Times</a>
+        <a href="#hotels" onclick="toggleTab('hotels')">Hotels</a>
+        <a href="#rooms" onclick="toggleTab('rooms')">Rooms</a>
+        <a href="#players" onclick="toggleTab('players')">Players</a>
+        <a href="#scramble" onclick="toggleTab('scramble')">Scramble</a>
+        <a href="#rydercup" onclick="toggleTab('rydercup')">Ryder Cup</a>
+        <a href="#singles" onclick="toggleTab('single')">Singles</a>
+        <a href="#" onclick="openModal()">Welcome Modal</a>
+    </nav>
 
-            // Show the selected sub-tab
-            document.getElementById(tabName + 'Tab').classList.add('active');
+
+    <script>
+        // Function to toggle tab content visibility
+        function toggleTab(tabName) {
+            var tabContent = document.getElementsByClassName("sub-tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+            }
+            document.getElementById(tabName + "Tab").style.display = "block";
         }
 
-        function toggleTabContent(tabId) {
-            const tabContent = document.getElementById(tabId + 'Tab');
-            tabContent.classList.toggle('active');
+        // Function to toggle sub-tab content visibility
+        function toggleTabContent(tabName) {
+            var subTabs = document.getElementsByClassName("sub-tab-content");
+            for (var i = 0; i < subTabs.length; i++) {
+                subTabs[i].style.display = "none";
+            }
+            document.getElementById(tabName + "Tab").style.display = "block";
+        }
+
+        // Function to open the welcome modal
+        function openModal() {
+            document.getElementById('myModal').style.display = "block";
+            startCountdown();
+        }
+
+        // Function to close the welcome modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        // Function to start the countdown timer
+        function startCountdown() {
+            var countDownDate = new Date("Apr 23, 2024 00:00:00").getTime();
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("timer").innerHTML = "EXPIRED";
+                }
+            }, 1000);
         }
     </script>
 
