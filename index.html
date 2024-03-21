@@ -136,6 +136,7 @@
             z-index: 100;
             color: #11e422;
             font-family: Sriracha, sans-serif;
+            transition: opacity 3s ease; /* Smooth transition effect */
         }
 
         .overlay-text.visible {
@@ -153,6 +154,11 @@
                 background-color: rgba(0, 0, 0.5);
                 font-size: 3rem;
             }
+        }
+
+        /* New styles for transition effect */
+        .overlay-text.fade-out {
+            opacity: 0;
         }
 
         #start-game-video {
@@ -557,8 +563,19 @@
             }, 500);
         }
 
-         // Show the overlay and start the countdown when the page is loaded
-         window.onload = function () {
+         // Function to remove overlay
+        function removeOverlay() {
+            // Add fade-out class to trigger opacity transition
+            document.getElementById('start-game').classList.add('fade-out');
+
+            // Remove the visible class after the transition ends
+            setTimeout(function() {
+                document.getElementById('start-game').classList.remove('visible', 'fade-out');
+            }, 5000); // Adjust the timeout to match the duration of your transition
+        }
+
+        // Show the overlay and start the countdown when the page is loaded
+        window.onload = function () {
             // Show the overlay
             document.getElementById('start-game').classList.add('visible');
             
@@ -567,7 +584,7 @@
 
             // Add event listener to the overlay to remove the visible class on click
             document.getElementById('start-game').addEventListener('click', function() {
-                document.getElementById('start-game').classList.remove('visible');
+                removeOverlay();
             });
         };
     </script>
