@@ -512,16 +512,16 @@
         </div>
     </section>
 
-    <nav>
-        <a href="#teeTimes" onclick="toggleTab('teeTimes')">Tee Times</a>
-        <a href="#hotels" onclick="toggleTab('hotels')">Hotels</a>
-        <a href="#rooms" onclick="toggleTab('rooms')">Rooms</a>
-        <a href="#players" onclick="toggleTab('players')">Players</a>
-        <a href="#scramble" onclick="toggleTab('scramble')">Scramble</a>
-        <a href="#rydercup" onclick="toggleTab('rydercup')">Ryder Cup</a>
-        <a href="#singles" onclick="toggleTab('single')">Singles</a>
-        <a href="#" onclick="openModal()">Welcome Modal</a>
-    </nav>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <iframe width="100%" height="315" src="https://www.youtube.com/watch?v=g6Pm-5A7C5k" frameborder="0" allowfullscreen></iframe>
+            <p>This is a quick video introduction to our golf holiday. Enjoy!</p>
+            <p>Countdown timer to 23rd April 2024:</p>
+            <div id="countdown"></div>
+        </div>
+    </div>
 
 
     <script>
@@ -543,36 +543,566 @@
             document.getElementById(tabName + "Tab").style.display = "block";
         }
 
-        // Function to open the welcome modal
+        // Function to open the modal
         function openModal() {
-            document.getElementById('myModal').style.display = "block";
-            startCountdown();
+            document.getElementById('myModal').style.display = 'block';
         }
 
-        // Function to close the welcome modal
+        // Function to close the modal
         function closeModal() {
-            document.getElementById('myModal').style.display = "none";
+            document.getElementById('myModal').style.display = 'none';
         }
 
-        // Function to start the countdown timer
-        function startCountdown() {
-            var countDownDate = new Date("Apr 23, 2024 00:00:00").getTime();
-            var x = setInterval(function() {
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                document.getElementById("timer").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s ";
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.getElementById("timer").innerHTML = "EXPIRED";
-                }
-            }, 1000);
-        }
+        // Countdown timer to 23rd April 2024
+        var countDownDate = new Date("April 23, 2024 00:00:00").getTime();
+
+        var x = setInterval(function() {
+
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
     </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Mobile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #068731;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #eee;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        p {
+            color: white;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        img {
+            width: 113%;
+            height: 9em;
+            margin-bottom: 10px;
+            cursor: pointer;
+            margin-left: -20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            color: white;
+            background-color: #333;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        a {
+            color: #ffffff; /* Change the color code to your desired color */
+            text-decoration: none; /* Optional: Remove underline */
+        }
+
+        .sub-tabs {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .sub-tab {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .teetable {
+            font-size: 12px;
+        }
+
+        .teetable th, .teetable td {
+            padding: 8px;
+        }
+
+
+        .sub-tab:hover {
+            background-color: #eee;
+        }
+
+        .sub-tab-content {
+            display: none;
+        }
+
+        .sub-tab-content.active {
+            display: block;
+        }
+
+        .two-columns {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .ryder-cup-table {
+            width: 48%; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Marbella Golf Holiday<br>23rd-28th April 2024</h1>
+    </header>
+
+
+    <section id="teeTimes">
+        <h2 onclick="toggleTabContent('teeTimes')"><img src="images/teetime.jpeg" alt="tee Times"></h2>
+        <div id="teeTimesTab" class="sub-tab-content">
+            <table class="teetable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Golf Course <br><small>(Click on course name for link to golf course)</small></th>
+                        <th>Pick Up from Hotel</th>
+                        <th>Pick Up from Golf Course</th>
+                        <th>Duration to Course</th>
+                        <th>Tee Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024-04-24</td>
+                        <td><a href="https://www.youtube.com/watch?v=L4rcu-Bnfro" target="_blank">Atalaya Golf</a></td>
+                        <td>08:00 AM</td>
+                        <td>14:30 PM</td>
+                        <td>6 minutes</td>
+                        <td>09:12 AM</td>
+                    </tr>                    
+                    <tr>
+                        <td>2024-04-25</td>
+                        <td><a href="https://www.youtube.com/watch?v=lYikR7bPt1Y&t=204s" target="_blank">Los Arqueros</a></td>
+                        <td>08:35 AM</td>
+                        <td>15:10 PM</td>
+                        <td>14 minutes</td>
+                        <td>09:50 AM</td>
+                    </tr>
+                    <tr>
+                        <td>2024-04-27</td>
+                        <td><a href="https://www.youtube.com/watch?v=mf3yRwqk88M" target="_blank">Valle Romano</a></td>
+                        <td>09:15 AM</td>
+                        <td>15:50 PM</td>
+                        <td>25 minutes</td>
+                        <td>10:30 AM</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </section>    
+
+    <section id="hotels">
+        <h2 onclick="toggleTabContent('hotels')">
+            <a href="https://www.melia.com/en/hotels/spain/estepona/sol-marbella-estepona-atalaya-park/gallery?_its=JTdCJTIydmlkJTIyJTNBJTIyMjMxNmRiODQtYTg3Ny00NDc1LWI5MmEtYWJlYjlhZjJhYmVjJTIyJTJDJTIyc3RhdGUlMjIlM0ElMjJybHR%2BMTcwNjAzMzkyMH5sYW5kfjJfMzk2NjVfcHBjYXV0b19lYWU3NjUxYjJhNTUyNTg2NjhhZDE0ODBkNDc0ZDhhZH5wdF9nY2xpZH5DandLQ0FpQTVMMnRCaEJURWl3QWRTeEpYME5iY3FCeUtDMzlXczVRREpVeHdMd1NNZFZwUnpOZEZXYW1WVm1UWERkekNZU0ppX3RrclJvQ2RHOFFBdkRfQndFJTIyJTJDJTIyc2l0ZUlkJTIyJTNBMTgxNCU3RA%3D%3D" target="_blank">
+                <img src="images/hotel.jpeg" alt="Hotels Image">
+            </a>
+        </h2>
+    </section>
+    
+    <section id="rooms">
+        <h2 onclick="toggleTabContent('rooms')"><img src="images/rooms.jpeg" alt="Rooms"></h2>
+        <div id="roomsTab" class="sub-tab-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Players</th>
+                        <th>Rooms</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Michael Williams - Jack Meredith</td>
+                        <td>Room 1</td>
+                    </tr>
+                    <tr>
+                        <td>Sid Howes - Jordan Meredith</td>
+                        <td>Room 2</td>
+                    </tr>
+                    <tr>
+                        <td>Harry Cleanthi - Jake Wilgoss</td>
+                        <td>Room 3</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Gough - Sam Gibson</td>
+                        <td>Room 4</td>
+                    </tr>
+                    <tr>
+                        <td>Adam Kheen - Jonny Cowlard (The Snorers)</td>
+                        <td>Room 5</td>
+                    </tr>
+                    <tr>
+                        <td>Tom Dunford - Jamie Taylor</td>
+                        <td>Room 6</td>
+                    </tr>
+                    <tr>
+                        <td>Keith Howes - Steve Collins</td>
+                        <td>Room 7</td>
+                    </tr>
+                    <tr>
+                        <td>Terry Gale - Anthony Buck</td>
+                        <td>Room 8</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="players">
+        <h2 onclick="toggleTabContent('players')"><img src="images/players.jpeg" alt="Players"></h2>
+        <div id="playersTab" class="sub-tab-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Handicap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jack Meredith</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td>Jake Wilgoss</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>Sid Howes(Current Champ -2 Shots)</td>
+                        <td>15 (13)</td>
+                    </tr>
+                    <tr>
+                        <td>Jordan Meredith</td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td>Adam Kheen</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>Jonny Cowlard</td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td>Steve Collins</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>Keith Howes</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>Anthony Buck</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>Terry Gale</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Gough</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>Harry Cleanthi</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>Sam Gibson</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td>Jamie Taylor</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Williams</td>
+                        <td>26</td>
+                    </tr>
+                    <tr>
+                        <td>Tom Dunford</td>
+                        <td>27</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="scramble">
+        <h2 onclick="toggleTabContent('scramble')"><img src="images/teeball.jpeg" alt="Scramble"></h2>
+        <div id="scrambleTab" class="sub-tab-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Group</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Keith Howes - Steve Collins,<br>Terry Gale - Anthony Buck</td>
+                        <td>Group 1</td>
+                    </tr>
+                    <tr>
+                        <td>Jake Wilgoss - Michael Williams<br>Sid Howes - Jamie Taylor</td>
+                        <td>Group 2</td>
+                    </tr>
+                    <tr>
+                        <td>Jordan Meredith - Sam Gibson,<br>Michael Gough - Jonny Cowlard</td>
+                        <td>Group 3</td>
+                    </tr>
+                    <tr>
+                        <td>Adam Kheen - Harry Cleanthi,<br>Jack Meredith - Tom Dunford</td>
+                        <td>Group 4</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="rydercup">
+        <h2 onclick="toggleTabContent('rydercup')"><img src="images/rydercup.jpeg" alt="Ryder Cup"></h2>
+        <div id="rydercupTab" class="sub-tab-content">
+            <div class="table-container">
+                <table class="ryder-cup-table">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Team USA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Steve Collins (C)</td>
+                            <td>USA 1</td>
+                        </tr>
+                        <tr>
+                            <td>Terry Gale</td>
+                            <td>USA 1</td>
+                        </tr>
+                        <tr>
+                            <td>Jack Meredith</td>
+                            <td>USA 2</td>
+                        </tr>
+                        <tr>
+                            <td>Jamie Taylor</td>
+                            <td>USA 2</td>
+                        </tr>
+                        <tr>
+                            <td>Sid Howes</td>
+                            <td>USA 3</td>
+                        </tr>
+                        <tr>
+                            <td>Tom Dunford</td>
+                            <td>USA 3</td>
+                        </tr>
+                        <tr>
+                            <td>Adam Kheen</td>
+                            <td>USA 4</td>
+                        </tr>
+                        <tr>
+                            <td>Harry Cleanthi</td>
+                            <td>USA 4</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+
+                <table class="ryder-cup-table">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Team Europe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Keith Howes (C)</td>
+                            <td>Europe 1</td>
+                        </tr>
+                        <tr>
+                            <td>Anthony Buck</td>
+                            <td>Europe 1</td>
+                        </tr>
+                        <tr>
+                            <td>Jake Wilgoss</td>
+                            <td>Europe 2</td>
+                        </tr>
+                        <tr>
+                            <td>Sam Gibson</td>
+                            <td>Europe 2</td>
+                        </tr>
+                        <tr>
+                            <td>Jordan Meredith</td>
+                            <td>Europe 3</td>
+                        </tr>
+                        <tr>
+                            <td>Michael Williams</td>
+                            <td>Europe 3</td>
+                        </tr>
+                        <tr>
+                            <td>Jonny Cowlard</td>
+                            <td>Europe 4</td>
+                        </tr>
+                        <tr>
+                            <td>Michael Gough</td>
+                            <td>Europe 4</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="singles">
+        <h2 onclick="toggleTabContent('single')"><img src="images/trophy.jpeg" alt="Singles"></h2>
+        <div id="singleTab" class="sub-tab-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Group</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Keith Howes,<br>Steve Collins,<br>Terry Gale,<br>Anthony Buck</td>
+                        <td>Group 1</td>
+                    </tr>
+                    <tr>
+                        <td>Jack Meredith,<br>Michael Williams,<br>Jordan Meredith,<br>Sid Howes</td>
+                        <td>Group 2</td>
+                    </tr>
+                    <tr>
+                        <td>Jake Wilgoss,<br>Jonny Cowlard,<br>Harry Cleanthi,<br>Adam Kheen</td>
+                        <td>Group 3</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Gough,<br>Tom Dunford,<br>Sam Gibson,<br>Jamie Taylor</td>
+                        <td>Group 4</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        function showSubTab(tabName) {
+            // Hide all sub-tabs
+            const subTabs = document.querySelectorAll('.sub-tab-content');
+            subTabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show the selected sub-tab
+            document.getElementById(tabName + 'Tab').classList.add('active');
+        }
+
+        function toggleTabContent(tabId) {
+            const tabContent = document.getElementById(tabId + 'Tab');
+            tabContent.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html> -->
